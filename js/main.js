@@ -186,11 +186,11 @@ function renderLine() {
         //    console.log('left')
         }
         if (line.align === 'mid') {
-            line.pos.x = 250
+            line.pos.x = gElCanvas.width/2-100
             console.log('mid')
         }
         if (line.align === 'right') {
-            line.pos.x = 400
+            line.pos.x = gElCanvas.width -100
             console.log('right')
         }
         gCtx.strokeText(line.text, line.pos.x, line.pos.y);
