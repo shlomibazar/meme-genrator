@@ -47,7 +47,7 @@ var gImgs = [
     },
     {
         id: 8,
-        url: './meme-imgs/8.jpg',
+        url: 'meme-imgs/8.jpg',
         keywords: ['funny', 'cat']
     },
 ];
@@ -65,6 +65,10 @@ var gMeme = {
     ]
 }
 
+function goBack(){
+    
+
+}
 
 function init() {
     gElCanvas = document.getElementById('my-canvas')
