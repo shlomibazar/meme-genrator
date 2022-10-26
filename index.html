@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Welcome canvas</title>
+</head>
+
+<body onload="init()">
+  <h1 class="header">meme gen</h1>
+  <section class="grid-container">
+    <!-- <img src="./meme-imgs/1.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/2.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/3.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/4.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/5.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/6.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/7.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/8.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/9.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/10.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/12.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/13.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/14.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/15.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/16.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/17.jpg" onclick="onImgClick(this)" alt="">
+    <img src="./meme-imgs (square)/18.jpg" onclick="onImgClick(this)" alt=""> -->
+
+  </section>
+
+  <div class="controller-conteiner ">
+
+    <nav class="selector">
+      <div>
+
+        <input type="button" onclick="location.href='index.html';" value="Go back" />
+        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+      </div>
+      
+      <label for="colorpicker">text color</label>
+      <input type="color" id="colorpicker" value="#0000ff">
+      <div>
+        
+        text: <input type="text" id="myText" value="" class="text" onchange="changeLineText()">
+      </div>  
+            
+      
+      <button onclick="moveup()">UP</button>
+      <button onclick="movedown()">DOWN</button>
+      <button onclick="prevline()">prev line</button>
+      <button onclick="nextline()">next line</button>
+      
+      
+      <button onclick="alignLeft(this)">align left</button>
+      <button onclick="alignMid()">align mid</button>
+      <button onclick="alignRight()">align right</button>
+      <div>
+
+        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+      </div>
+    </nav>
+
+    <div class="canvas-container">
+      <h3>Container</h3>
+      <canvas id="my-canvas" height="450" width="450"></canvas>
+    </div>
+  </div>
+
+  <script src="js/move-item.js"></script>
+  <script src="js/add-service.js"></script>
+  <script src="js/upload.service.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
