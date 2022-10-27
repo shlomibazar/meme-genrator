@@ -9,71 +9,82 @@
   <title>Welcome canvas</title>
 </head>
 
-<body onload="init()">
-  <h1 class="header">meme gen</h1>
-  <section class="grid-container">
-    <!-- <img src="./meme-imgs/1.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/2.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/3.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/4.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/5.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/6.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/7.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/8.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/9.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/10.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/12.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/13.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/14.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/15.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/16.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/17.jpg" onclick="onImgClick(this)" alt="">
-    <img src="./meme-imgs (square)/18.jpg" onclick="onImgClick(this)" alt=""> -->
+<div class="page-conteiner">
 
-  </section>
-
-  <div class="controller-conteiner ">
-
-    <nav class="selector">
-      <div>
-
-        <input type="button" onclick="location.href='index.html';" value="Go back" />
-        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+  <body onload="init()">
+    <div class="header flex directionRow spacebetween">
+      <img src="imgs/logo.png" class="logo" alt="logo" />
+      <!-- <h1>My website name</h1> -->
+      <div class="topnav flex  ">
+        <a href="index.html" class="goback flex">Gallary</a>
+        <a href="index.html" class="about flex flex">About Us</a>
       </div>
-      
-      <label for="colorpicker">text color</label>
-      <input type="color" id="colorpicker" value="#0000ff">
-      <div>
-        
-        text: <input type="text" id="myText" value="" class="text" onchange="changeLineText()">
-      </div>  
-            
-      
-      <button onclick="moveup()">UP</button>
-      <button onclick="movedown()">DOWN</button>
-      <button onclick="prevline()">prev line</button>
-      <button onclick="nextline()">next line</button>
-      
-      
-      <button onclick="alignLeft(this)">align left</button>
-      <button onclick="alignMid()">align mid</button>
-      <button onclick="alignRight()">align right</button>
-      <div>
-
-        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-      </div>
-    </nav>
-
-    <div class="canvas-container">
-      <h3>Container</h3>
-      <canvas id="my-canvas" height="450" width="450"></canvas>
     </div>
-  </div>
 
-  <script src="js/move-item.js"></script>
-  <script src="js/add-service.js"></script>
-  <script src="js/upload.service.js"></script>
-  <script src="js/main.js"></script>
+    <section class="grid-container">
+    </section>
+
+    <div class="controller-conteiner hidden">
+      <nav class="selector">
+        <div>
+          <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" /> -->
+        </div>
+
+        <div class="flex directionRow style " style="gap:25px">
+          <label for="colorpicker"></label>
+          <input type="color" id="colorpicker" value="#0000ff" >
+
+           <input type="text" id="myText" value="" class="text style" placeholder="enter text"
+            onchange="changeLineText()">
+        </div>
+
+        <div class="flex directionRow justify-content-evenley fontbuttons">
+          <input onclick="incFont()" type="image" src="./imgs/button-imgs/resize-font-plus.png"
+            class="button font-size-plus style">
+          <input onclick="decFont()" type="image" src="./imgs/button-imgs/resize-font-minus.png"
+            class="button font-size-minus style">
+          <input onclick="alignLeft()" type="image" src="./imgs/button-imgs/left-align.png" 
+          class="button align-left style">
+          <input onclick="alignMid()" type="image" src="./imgs/button-imgs/center-align.png"
+            class="button align-center style">
+          <input onclick="alignRight()" type="image" src="./imgs/button-imgs/right-align.png"
+            class="button align-right style">
+        </div>
+
+        <div class="flex directionRow justify-content-evenley linebuttons">
+          <input onclick="moveup()" type="image" src="./imgs/button-imgs/up-arrow.png" class="button align-right style ">
+          <input onclick="movedown()" type="image" src="./imgs/button-imgs/down-arrow.png" class="button align-right style">
+          <input onclick="prevline()" type="image" src="./imgs/button-imgs/left-arrow.png" class="button align-right style" >
+          <input onclick="nextline()"" type="image" src="./imgs/button-imgs/right-arrow.png"class="button align-right style">
+          <input onclick="deleteLine()" type="image" src="./imgs/button-imgs/delete.png" class="button align-right style">
+        </div>
+        <div class="sticker-conteiner flex">
+        </div>
+        
+        <div>
+          <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
+        </div>
+      </nav>
+
+      <div class="canvas-container  ">
+        <h3>Start Edit Now :-)</h3>
+        <canvas id="my-canvas" height="450" width="450"></canvas>
+      </div>
+    </div>
+
+    <footer class="main-footer flex directioncol">
+
+      &#169 all rights reserved
+      <img src="imgs/logo.png" class="logo bottom" alt="logo" />
+
+    </footer>
+</div>
+
+
+<script src="js/buttons.js"></script>
+<script src="js/add-service.js"></script>
+<script src="js/upload.service.js"></script>
+<script src="js/main.js"></script>
 </body>
 
 </html>

@@ -8,93 +8,49 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 // var isDrag = false
 
 var gCurrImageId
+var gCurrStickerId
 
-var gImgs = [
-    {
-        id: 1,
-        url: './meme-imgs/1.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 2,
-        url: './meme-imgs/2.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 3,
-        url: './meme-imgs/3.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 4,
-        url: './meme-imgs/4.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 5,
-        url: './meme-imgs/5.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 6,
-        url: './meme-imgs/6.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 7,
-        url: './meme-imgs/7.jpg',
-        keywords: ['funny', 'cat']
-    },
-    {
-        id: 8,
-        url: 'meme-imgs/8.jpg',
-        keywords: ['funny', 'cat']
-    },
-];
 
-var gMeme = {
-    selectedImgId: 5,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red'
-        }
-    ]
-}
 
-function goBack(){
-    
-
-}
 
 function init() {
-    gElCanvas = document.getElementById('my-canvas')
-    gCtx = gElCanvas.getContext('2d')
-    resizeCanvas()
-    addListeners()
-    renderCanvas()
     renderImages()
-    //window.addEventListener('resize', resizeCanvas)
-    // click on canvas
+    
 }
 
 function renderImages() {
-    const strHTMLs = gImgs.map(image => `<img src="${image.url}" onclick="onImgClick(this)" alt="">`)
+    const strHTMLs = gImgs.map(image => `<img src="${image.url}" onclick="onImgClick(this)"  alt="">`)
     const elgridConteiner = document.querySelector('.grid-container')
     elgridConteiner.innerHTML = strHTMLs.join('')
     //console.log('elgridConteiner.innerHTML',elgridConteiner.innerHTML)
+}
 
+function renderStickers() {
+    const strHTMLs = gStickers.map(sticker => `<img src="${sticker.url}" onclick="onStickerClick(this)" alt="" class="button"></img>`)
+    const elgridConteiner = document.querySelector('.sticker-conteiner')
+    elgridConteiner.innerHTML = strHTMLs.join('')
+
+}
+
+function renderMeme(imgSrc) {
+    render()
+    renderImg(imgSrc)  
+    // renderSticker(stickerSrc)
+    setTimeout(renderLine, 300)
+}
+
+function render(){
+    gElCanvas = document.getElementById('my-canvas')
+    gCtx = gElCanvas.getContext('2d')
+    resizeCanvas()
+    renderCanvas()
 }
 
 function renderCanvas() {
     //Set the backgournd color to grey 
-    gCtx.fillStyle = "#ede5ff"
+    gCtx.fillStyle = "#ff7f00"
     //Clear the canvas,  fill it with grey background
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
-    //renderLine()
 }
 
 function onImgClick(ev) {
@@ -105,41 +61,43 @@ function onImgClick(ev) {
     var editpage = document.querySelector('.controller-conteiner')
     editpage.classList.remove('hidden')
     gCurrImageId = +ev.src.charAt(ev.src.length-5)
-    //console.log('gCurrImageId',gCurrImageId)
-    //console.log('ev.value', ev.src)
+
+    // var fotter = document.querySelector('footer')
+    // editpage.classList.add('position')
+    
     renderMeme(gImgs[gCurrImageId-1].url)
-    //startGame()
+    renderStickers()
+
 }
 
-function renderMeme(imgSrc) {
-    renderCanvas()
-    renderImg(imgSrc)
-    setTimeout(renderLine, 300)
+function onStickerClick(ev) {
+
+
+    gCurrStickerId = +ev.src.charAt(ev.src.length-5)
+
+    // var fotter = document.querySelector('footer')
+    // editpage.classList.add('position')
     
-    
+    renderSticker(gStickers[gCurrStickerId-1].url)
+
 }
 
 
 
-// window.onload = function(){
-//     gElCanvas = document.getElementById('my-canvas')
-//     gCtx = gElCanvas.getContext('2d')
 
-//     var imageObj = new Image();
-//     imageObj.onload = function(){
-//         gCtx.drawImage(imageObj, 10, 10);
-//         gCtx.font = "40pt Calibri";
-//         gCtx.fillText("My TEXT!", 20, 20);
-//     };
-//     imageObj.src = "darth-vader.jpg"; 
-// };
 
 function renderImg(imgSrc) {
-    // console.log('imgSrc',imgSrc)
-    base_image = new Image();
-    base_image.src = imgSrc;
+    base_image = new Image()
+    base_image.src = imgSrc
     base_image.onload = function () {
-        gCtx.drawImage(base_image, 0, 0, gElCanvas.width, gElCanvas.height); 
+        gCtx.drawImage(base_image, 0, 0, base_image.width, base_image.height); 
+    }
+}
+function renderSticker(stickerSrc) {
+    base_sticker = new Image();
+    base_sticker.src = stickerSrc
+    base_sticker.onload = function () {
+        gCtx.drawImage(base_sticker, 0, 0, 40, 40); 
     }
 }
 
@@ -151,54 +109,38 @@ function changeLineText() {
     
     var text = document.getElementById("myText").value
     var length = gLines.length
-  //  console.log('//////////////////////////')
-  //  console.log('length', length)
 
     if (length > 0) {
-//console.log('example', gLines[length - 1].pos)
+
         var newPos = {
             x: gLines[length - 1].pos.x,
             y: gLines[length - 1].pos.y + 40,
         }
-       // console.log('gLines[length-1]', gLines[length - 1])
-//console.log('newPos', newPos)
         createLine(newPos, text, gCurrColor)
     } else {
         createLine(top, text, gCurrColor)
     }
-
-   // console.log('//////////////////////////')
-    //renderLine()
      renderMeme(gImgs[gCurrImageId-1].url)
-
-
 }
-
 
 function renderLine() {
     
     gLines.map(line => {
-        gCtx.font = "30px Arial";
+        gCtx.font = `${line.size}px Arial`
         gCtx.strokeStyle = line.color;
-        // console.log('gCtx.fillStyle',gCtx.fillStyle)
         if (line.align === 'left') {
             line.pos.x = 20
-        //    console.log('left')
         }
         if (line.align === 'mid') {
             line.pos.x = gElCanvas.width/2-100
-            console.log('mid')
         }
         if (line.align === 'right') {
             line.pos.x = gElCanvas.width -100
-            console.log('right')
         }
         gCtx.strokeText(line.text, line.pos.x, line.pos.y);
-        // gCurrLine+=1
 
     })
-    //drawRect(50, 50)
-    //renderComp()
+
 }
 
 
@@ -220,9 +162,14 @@ function onChoseColor() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     // Note: changing the canvas dimension this way clears the canvas
-    gElCanvas.width = elContainer.offsetWidth - 20
-    // Unless needed, better keep height fixed.
-    // gElCanvas.height = elContainer.offsetHeight
+
+    gElCanvas.width = elContainer.offsetWidth 
+    gElCanvas.height = elContainer.offsetWidth 
+    gElCanvas.width = 500
+    gElCanvas.height = 500
+
+
+
 }
 function setShape(shape) {
     console.log('shape', shape)
@@ -237,13 +184,7 @@ function onClear() {
     renderCanvas()
 
 }
-// this section for clicked
 
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
 
 
 function onDown(ev) {
@@ -366,63 +307,6 @@ function loadImageFromInput(ev, onImageReady) {
 
 
 
-// function onImgClick(ev) {
-//     var grid = document.querySelector('.grid-container')
-//     grid.classList.add('hidden');
 
-//     var editpage = document.querySelector('.controller-conteiner')
-//     editpage.classList.remove('hidden')
-
-//     //console.log('ev.value', ev.src)
-//     renderImg(ev.src)
-//     //startGame()
-// }
-
-
-
-
-
-
-function renderComp() {
-    var myGamePiece = component(30, 30, "red", 10, 120);
-    console.log('myGamePiece', myGamePiece)
-    myGamePiece.newPos();
-    console.log('myGamePiece.newPos()', myGamePiece.newPos())
-    myGamePiece.update();
-    renderComp()
-    console.log('HEY')
-}
-
-
-function drawRect(x, y) {
-    gCtx.beginPath()
-    gCtx.strokeStyle = gCurrColor
-    gCtx.strokeRect(x - 20, y - 20, 20, 20)
-    gCtx.fillStyle = 'BLUE'
-    // gCtx.fillRect(x, y, 20, 20)
-    gCtx.closePath()
-
-}
-
-
-
-
-
-function alignLeft() {
-    
-
-    gLines[gLines.length-1].align = 'left'
-    renderMeme(gImgs[gCurrImageId-1].url)
-}
-function alignMid() {
-    console.log('gLines[gLines.length].align',gLines[gLines.length-1].align)
-    gLines[gLines.length-1].align = 'mid'
-    renderMeme(gImgs[gCurrImageId-1].url)
-    
-}
-function alignRight() {
-    gLines[gLines.length-1].align = 'right'
-    renderMeme(gImgs[gCurrImageId-1].url)
-}
 
 
