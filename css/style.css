@@ -31,6 +31,7 @@ h3 {
 
 .header {
   background-color: #ff7f00;
+  width: 100%;
 }
 
 a {
@@ -222,5 +223,13 @@ img:nth-child(6n + 1) {
     height: 30px;
   }
 
+  .logo {
+    width: 250ox;
+    height: 70px;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+  }
 
 }
