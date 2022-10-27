@@ -135,10 +135,14 @@ canvas {
   height: 500px;
 } */
 
-img {
+.image{
   width: 200px;
   height: 200px;
 }
+/* img {
+  width: 200px;
+  height: 200px;
+} */
 
 /* img:nth-child(4n) {
   grid-column: span 2;
@@ -207,6 +211,10 @@ img:nth-child(6n + 1) {
   gap: 15px;
 }
 
+.downloadBtn{
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
 
 .hidden {
   display: none;
@@ -221,15 +229,21 @@ img:nth-child(6n + 1) {
 
   footer{
     height: 30px;
+    position: relative;
   }
 
   .logo {
     width: 250ox;
     height: 70px;
   }
-  img {
+  .image {
     width: 100px;
     height: 100px;
   }
+
+  .selector {
+    gap: 5px;
+    margin-top: 2px;
+  } 
 
 }

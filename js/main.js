@@ -19,7 +19,7 @@ function init() {
 }
 
 function renderImages() {
-    const strHTMLs = gImgs.map(image => `<img src="${image.url}" onclick="onImgClick(this)"  alt="">`)
+    const strHTMLs = gImgs.map(image => `<img src="${image.url}" onclick="onImgClick(this)"  alt="" class="image">`)
     const elgridConteiner = document.querySelector('.grid-container')
     elgridConteiner.innerHTML = strHTMLs.join('')
     //console.log('elgridConteiner.innerHTML',elgridConteiner.innerHTML)
