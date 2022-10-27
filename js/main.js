@@ -11,11 +11,8 @@ var gCurrImageId
 var gCurrStickerId
 
 
-
-
 function init() {
     renderImages()
-    
 }
 
 function renderImages() {
@@ -47,9 +44,7 @@ function render(){
 }
 
 function renderCanvas() {
-    //Set the backgournd color to grey 
     gCtx.fillStyle = "#ff7f00"
-    //Clear the canvas,  fill it with grey background
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
 
@@ -61,30 +56,15 @@ function onImgClick(ev) {
     var editpage = document.querySelector('.controller-conteiner')
     editpage.classList.remove('hidden')
     gCurrImageId = +ev.src.charAt(ev.src.length-5)
-
-    // var fotter = document.querySelector('footer')
-    // editpage.classList.add('position')
-    
+   
     renderMeme(gImgs[gCurrImageId-1].url)
     renderStickers()
-
 }
 
 function onStickerClick(ev) {
-
-
     gCurrStickerId = +ev.src.charAt(ev.src.length-5)
-
-    // var fotter = document.querySelector('footer')
-    // editpage.classList.add('position')
-    
     renderSticker(gStickers[gCurrStickerId-1].url)
-
 }
-
-
-
-
 
 function renderImg(imgSrc) {
     base_image = new Image()
@@ -143,22 +123,6 @@ function renderLine() {
 
 }
 
-
-
-
-
-
-
-
-function onChoseColor() {
-    //const gCurrColor = document.querySelector('.shape-choose').value
-    const gCurrColor = document.getElementById('colorpicker').value
-    console.log('gCurrColor', gCurrColor)
-    gCurrShape = gCurrColor
-
-}
-
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     // Note: changing the canvas dimension this way clears the canvas
@@ -167,18 +131,15 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetWidth 
     gElCanvas.width = 500
     gElCanvas.height = 500
-
-
-
-}
-function setShape(shape) {
-    console.log('shape', shape)
-    gCurrShape = shape
 }
 
 
 
-
+ //// didnt got to this part yet ///////////////////////
+ //// didnt got to this part yet ///////////////////////
+ //// didnt got to this part yet ///////////////////////
+ //// didnt got to this part yet ///////////////////////
+ //// didnt got to this part yet ///////////////////////
 function onClear() {
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
     renderCanvas()
@@ -277,10 +238,7 @@ function getEvPos(ev) {
 //   }
 
 
-function downloadImg(elLink) {
-    const imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
-    elLink.href = imgContent
-}
+
 
 
 // The next 2 functions handle IMAGE UPLOADING to img tag from file system: 

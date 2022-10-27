@@ -135,14 +135,6 @@ var gMeme = {
 
 
 
-
-
-
-
-
-
-
-
 function createLine(pos, text, color) {
     gLines.push({
         pos,

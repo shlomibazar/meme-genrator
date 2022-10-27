@@ -18,6 +18,13 @@ function nextline() {
     gCurrLine === gLines.length -1 ? gCurrLine = 0 : gCurrLine += 1
 }
 
+function onChoseColor() {
+    //const gCurrColor = document.querySelector('.shape-choose').value
+    const gCurrColor = document.getElementById('colorpicker').value
+    console.log('gCurrColor', gCurrColor)
+    gCurrShape = gCurrColor
+
+}
 
 function alignLeft() {
     gLines[gLines.length-1].align = 'left'
@@ -49,3 +56,19 @@ function deleteLine(){
     gLines.splice(gLines.length-1, 1)
     renderMeme(gImgs[gCurrImageId-1].url)
 }   
+
+
+var x = document.getElementById("myAudio");
+
+function playAudio() {
+  x.play();
+}
+
+function pauseAudio() {
+  x.pause();
+}
+
+function downloadImg(elLink) {
+    const imgContent = gElCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+    elLink.href = imgContent
+}
