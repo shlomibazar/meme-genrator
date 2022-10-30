@@ -72,8 +72,8 @@ function renderImg(imgSrc,width) {
     base_image.onload = function () {
         gCtx.drawImage(base_image, 0, 0, base_image.width, base_image.height);
         renderLine()
-        console.log('width',width)
-        gCtx.strokeRect( 10,  10, width, 50)
+        // console.log('width',width)
+        // gCtx.strokeRect( 10,  10, width, 50)
     }
 
 }
