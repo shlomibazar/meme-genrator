@@ -1,11 +1,23 @@
 var gCurrLine = 0
 
+// function moveup() {
+//     gLines[gCurrLine].pos.y -= 10
+//     renderMeme(gImgs[gCurrImageId - 1].url)
+// }
+
 function moveup() {
+
+    var currPos = gLines[gCurrLine].pos.y
+
+    if (currPos<70 ) return
     gLines[gCurrLine].pos.y -= 10
     renderMeme(gImgs[gCurrImageId - 1].url)
 }
 
 function movedown() {
+    var currPos = gLines[gCurrLine].pos.y
+
+    if ( currPos>490 ) return
     gLines[gCurrLine].pos.y += 10
     renderMeme(gImgs[gCurrImageId - 1].url)
 }

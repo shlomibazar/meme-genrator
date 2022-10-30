@@ -29,14 +29,14 @@ function renderStickers() {
 
 }
 
-function renderMeme(imgSrc) {
+function renderMeme(imgSrc,width) {
     render()
-    renderImg(imgSrc)  
+    renderImg(imgSrc,width)
     // renderSticker(stickerSrc)
-    setTimeout(renderLine, 300)
+    //setTimeout(renderLine, 300)
 }
 
-function render(){
+function render() {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     resizeCanvas()
@@ -55,56 +55,88 @@ function onImgClick(ev) {
 
     var editpage = document.querySelector('.controller-conteiner')
     editpage.classList.remove('hidden')
-    gCurrImageId = +ev.src.charAt(ev.src.length-5)
-   
-    renderMeme(gImgs[gCurrImageId-1].url)
+    gCurrImageId = +ev.src.charAt(ev.src.length - 5)
+
+    renderMeme(gImgs[gCurrImageId - 1].url)
     renderStickers()
 }
 
 function onStickerClick(ev) {
-    gCurrStickerId = +ev.src.charAt(ev.src.length-5)
-    renderSticker(gStickers[gCurrStickerId-1].url)
+    gCurrStickerId = +ev.src.charAt(ev.src.length - 5)
+    renderSticker(gStickers[gCurrStickerId - 1].url)
 }
 
-function renderImg(imgSrc) {
+function renderImg(imgSrc,width) {
     base_image = new Image()
     base_image.src = imgSrc
     base_image.onload = function () {
-        gCtx.drawImage(base_image, 0, 0, base_image.width, base_image.height); 
+        gCtx.drawImage(base_image, 0, 0, base_image.width, base_image.height);
+        renderLine()
+        console.log('width',width)
+        gCtx.strokeRect( 10,  10, width, 50)
     }
+
 }
 function renderSticker(stickerSrc) {
     base_sticker = new Image();
     base_sticker.src = stickerSrc
     base_sticker.onload = function () {
-        gCtx.drawImage(base_sticker, 0, 0, 40, 40); 
+        gCtx.drawImage(base_sticker, 0, 0, 40, 40);
     }
 }
 
+function getInputValue() {
+    // Selecting the input element and get its value 
+    var inputVal = document.getElementById("myText").value
+    console.log('inputVal', inputVal)
+
+    return inputVal
+
+}
+
+
+function newLine(){
+    var length = gLines.length
+    console.log('length',length)
+    const gCurrColor = document.getElementById('colorpicker').value
+    text =''
+    console.log('gLines[length ].pos.y',gLines[length-1 ].pos.y)
+    var newPos = {
+        x: gLines[length-1 ].pos.x,
+        y: gLines[length-1 ].pos.y + 40,
+    }
+    createLine(newPos, text, gCurrColor)
+    gCurrLine+=1
+}
 
 function changeLineText() {
+
     const top = { x: 50, y: 50 }
     const { pos, color, size } = getLine()
     const gCurrColor = document.getElementById('colorpicker').value
-    
+
+    // var text = document.querySelector('.text')
+    // text.classList.add('outline');
+
     var text = document.getElementById("myText").value
     var length = gLines.length
 
     if (length > 0) {
 
-        var newPos = {
-            x: gLines[length - 1].pos.x,
-            y: gLines[length - 1].pos.y + 40,
-        }
-        createLine(newPos, text, gCurrColor)
+        gLines[gCurrLine ].text = text
+
     } else {
+        console.log('i here')
         createLine(top, text, gCurrColor)
     }
-     renderMeme(gImgs[gCurrImageId-1].url)
+    let textwidth = gCtx.measureText(text);
+     console.log(textwidth.width); 
+     renderMeme(gImgs[gCurrImageId - 1].url,textwidth.width)
+     
 }
 
 function renderLine() {
-    
+
     gLines.map(line => {
         gCtx.font = `${line.size}px Arial`
         gCtx.strokeStyle = line.color;
@@ -112,10 +144,10 @@ function renderLine() {
             line.pos.x = 20
         }
         if (line.align === 'mid') {
-            line.pos.x = gElCanvas.width/2-100
+            line.pos.x = gElCanvas.width / 2 - 100
         }
         if (line.align === 'right') {
-            line.pos.x = gElCanvas.width -100
+            line.pos.x = gElCanvas.width - 100
         }
         gCtx.strokeText(line.text, line.pos.x, line.pos.y);
 
@@ -127,19 +159,19 @@ function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     // Note: changing the canvas dimension this way clears the canvas
 
-    gElCanvas.width = elContainer.offsetWidth 
-    gElCanvas.height = elContainer.offsetWidth 
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetWidth
     gElCanvas.width = 500
     gElCanvas.height = 500
 }
 
 
 
- //// didnt got to this part yet ///////////////////////
- //// didnt got to this part yet ///////////////////////
- //// didnt got to this part yet ///////////////////////
- //// didnt got to this part yet ///////////////////////
- //// didnt got to this part yet ///////////////////////
+//// didnt got to this part yet ///////////////////////
+//// didnt got to this part yet ///////////////////////
+//// didnt got to this part yet ///////////////////////
+//// didnt got to this part yet ///////////////////////
+//// didnt got to this part yet ///////////////////////
 function onClear() {
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
     renderCanvas()
@@ -185,7 +217,7 @@ function onUp() {
 //Handle the listeners
 function addListeners() {
     addMouseListeners()
-   // addTouchListeners()
+    // addTouchListeners()
     //Listen for resize ev 
     window.addEventListener('resize', () => {
         resizeCanvas()

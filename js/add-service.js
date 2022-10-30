@@ -1,3 +1,4 @@
+var gCurrLine = 0
 
 let gLines = []
 //let gComponent = []
@@ -143,6 +144,7 @@ function createLine(pos, text, color) {
         align: 'left',
         color,
         isDrag: false,
+        isSelected: true,
     })
 }
 

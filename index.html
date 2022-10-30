@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/style.css" />
-  <title>Welcome canvas</title>
+  <title>Meme Genrator</title>
 </head>
 
-<div class="page-conteiner">
+<div class="page-conteiner ">
 
   <body onload="init()">
     <div class="header flex directionRow spacebetween">
@@ -29,12 +29,18 @@
           <!-- <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" /> -->
         </div>
 
-        <div class="flex directionRow style " style="gap:25px">
+        <div class="flex directionRow center style  " style="gap:10px">
           <label for="colorpicker"></label>
           <input type="color" id="colorpicker" value="#0000ff" >
 
            <input type="text" id="myText" value="" class="text style" placeholder="enter text"
-            onchange="changeLineText()">
+            oninput="changeLineText()">
+            <!-- <input type="text" id="myText" value="" class="text style" placeholder="enter text"
+            oninput="getInputValue()"> -->
+
+            <!-- <button type="button" onclick="newLine();">new line</button> -->
+            <input onclick="newLine()" type="image" src="./imgs/button-imgs/plus.png"
+            class="button font-size-plus style">
         </div>
 
         <div class="flex directionRow justify-content-evenley fontbuttons">
@@ -60,9 +66,9 @@
         <div class="sticker-conteiner flex">
         </div>
         
-        <audio controls autoplay muted>
+        <audio controls autoplay muted class="audio">
 
-          <source src="./imgs/1.mp3" type="audio/mpeg">
+          <source src="./imgs/1.mp3" type="audio/mpeg" >
         Your browser does not support the audio element.
         </audio>
 
@@ -72,7 +78,7 @@
       </nav>
 
       <div class="canvas-container  ">
-        <h3>Start Edit Now :-)</h3>
+        
         <canvas id="my-canvas" height="450" width="450"></canvas>
       </div>
     </div>
